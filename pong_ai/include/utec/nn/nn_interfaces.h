@@ -1,9 +1,3 @@
-//
-// Created by fabri on 30/11/2025.
-//
-
-#ifndef PONG_AI_NN_INTERFACES_H
-#define PONG_AI_NN_INTERFACES_H
 #pragma once
 #include "tensor.h"
 
@@ -42,5 +36,3 @@ namespace utec {
 
     } // namespace neural_network
 } // namespace utec
-
-#endif //PONG_AI_NN_INTERFACES_H

@@ -1,10 +1,3 @@
-//
-// Created by fabri on 30/11/2025.
-//
-
-#ifndef PONG_AI_NN_LOSS_H
-#define PONG_AI_NN_LOSS_H
-
 #pragma once
 #include "nn_interfaces.h"
 #include <cmath>
@@ -112,5 +105,3 @@ namespace utec {
 
     }
 }
-
-#endif //PONG_AI_NN_LOSS_H

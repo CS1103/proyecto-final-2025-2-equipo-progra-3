@@ -1,8 +1,0 @@
-# ninja log v6
-2	526	7862467075096173	CMakeFiles/pong_ai.dir/main.cpp.obj	fd80d13f97a7f535
-96	231	7862476196340653	pong_ai.exe	8046677ec2e18e72
-29	96	7862476195680021	CMakeFiles/pong_ai.dir/src/utec/apps/ControllerDemo.cpp.obj	2ad6bc8c92200762
-21	91	7862476195594868	CMakeFiles/pong_ai.dir/src/utec/apps/PatternClassifier.cpp.obj	f5c6384b631aa97b
-2	427	7862487100638172	build.ninja	79ed4f6bf7e0bb94
-2	427	7862487100588166	C:/Users/fabri/Desktop/proyecto-final-2025-2-equipo-progra-3/pong_ai/cmake-build-debug/cmake_install.cmake	79ed4f6bf7e0bb94
-25	94	7862476195640039	CMakeFiles/pong_ai.dir/src/utec/apps/SequencePredictor.cpp.obj	1305f0ed71b3b297

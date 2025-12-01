@@ -1,6 +1,3 @@
-#ifndef PONG_AI_TENSOR1_H
-#define PONG_AI_TENSOR1_H
-
 #pragma once
 #include <iostream>
 #include <array>
@@ -314,5 +311,3 @@ Tensor<T, N> matrix_product(const Tensor<T, N>& a, const Tensor<T, N>& b) {
 
 }  // namespace algebra
 }  // namespace utec
-
-#endif //PONG_AI_TENSOR1_H

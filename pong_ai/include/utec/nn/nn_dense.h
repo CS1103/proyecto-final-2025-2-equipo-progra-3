@@ -1,10 +1,3 @@
-//
-// Created by fabri on 30/11/2025.
-//
-
-#ifndef PONG_AI_NN_DENSE_H
-#define PONG_AI_NN_DENSE_H
-
 #pragma once
 #include "nn_interfaces.h"
 #include <numeric>
@@ -94,5 +87,3 @@ public:
 
 }
 }
-
-#endif //PONG_AI_NN_DENSE_H
