@@ -5,8 +5,12 @@
 
 >  Este proyecto implementa un framework de Deep Learning desarrollado desde cero en C++ Moderno (C++20). A diferencia de soluciones comerciales, este motor no utiliza librerías externas para el cálculo matricial; en su lugar, hemos implementado nuestro propio motor de álgebra lineal (Tensor<T,N>).
 
+El dataset usado es "Iris" (recolectado de https://gist.github.com/netj/8836201#file-iris-csv), contiene 150 muestras de flores divididas en 3 especies (Setosa, Versicolor, Virginica). Cada muestra tiene 4 características numéricas relacionadas con las medidas del sépalo y del pétalo.
+
+El objetivo es clasificar correctamente la especie basada en estas medidas.
+
 El sistema es capaz de resolver problemas de:
-- Clasificación: Identificación de patrones (Ej. Dataset Iris). 
+- Clasificación: Identificación de patrones (Dataset Iris). 
 - Regresión: Predicción de secuencias numéricas. 
 El desarrollo abarca los tres hitos (Epics) del curso:
 - Epic 1: Biblioteca de Álgebra Tensorial. 
