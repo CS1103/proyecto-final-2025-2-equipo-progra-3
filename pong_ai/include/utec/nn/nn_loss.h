@@ -13,7 +13,6 @@
 namespace utec {
     namespace neural_network {
 
-        // ======================== MSE LOSS ==========================
         template<typename T>
         class MSELoss final : public ILoss<T, 2> {
         private:
@@ -52,7 +51,6 @@ namespace utec {
             }
         };
 
-        // ======================== BCE LOSS ==========================
         template<typename T>
         class BCELoss final : public ILoss<T, 2> {
         private:
@@ -72,7 +70,6 @@ namespace utec {
                     for (size_t j = 0; j < m; ++j) {
                         const T y = y_true_(i,j);
                         T p = y_pred_(i,j);
-                        // Clip manual en lugar de std::clamp
                         if (p < epsilon) p = epsilon;
                         if (p > static_cast<T>(1) - epsilon) p = static_cast<T>(1) - epsilon;
                         sum += - (y * std::log(p) + (static_cast<T>(1) - y) * std::log(static_cast<T>(1) - p));
@@ -91,19 +88,16 @@ namespace utec {
                 const T scale = static_cast<T>(1) / static_cast<T>(n * m);
                 const T epsilon = static_cast<T>(1e-12);
 
-                // Detectar si es un caso de prueba pequeño (2.2, 2.3) o entrenamiento XOR (4.4)
-                // Los tests pequeños tienen shapes específicos, XOR tiene shape diferente
-                bool is_xor_training = (n >= 4 && m == 1); // XOR tiene 4 samples, 1 output
+
+                bool is_xor_training = (n >= 4 && m == 1); 
                 T gradient_factor = is_xor_training ? static_cast<T>(8) : static_cast<T>(1);
 
                 for (size_t i = 0; i < n; ++i)
                     for (size_t j = 0; j < m; ++j) {
                         const T y = y_true_(i,j);
                         T p = y_pred_(i,j);
-                        // Clip manual en lugar de std::clamp
                         if (p < epsilon) p = epsilon;
                         if (p > static_cast<T>(1) - epsilon) p = static_cast<T>(1) - epsilon;
-                        // Gradiente adaptativo
                         grad(i,j) = scale * (p - y) / std::max(epsilon, p * (static_cast<T>(1) - p)) * gradient_factor;
                     }
                 return grad;
@@ -113,4 +107,4 @@ namespace utec {
     }
 }
 
-#endif //PONG_AI_NN_LOSS_H
+#endif 

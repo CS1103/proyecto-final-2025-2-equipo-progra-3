@@ -20,4 +20,4 @@ private:
 
 
 
-#endif //PONG_AI_SEQUENCEPREDICTOR_H
+#endif 

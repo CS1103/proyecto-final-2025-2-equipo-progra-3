@@ -19,4 +19,4 @@ private:
 };
 
 
-#endif //PONG_AI_PATTERNCLASSIFIER_H
+#endif 

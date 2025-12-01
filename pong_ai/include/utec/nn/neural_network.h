@@ -44,26 +44,22 @@ namespace utec {
                 for (size_t epoch = 0; epoch < epochs; ++epoch) {
                     Tensor<T,2> output = X;
 
-                    // Forward pass
                     for (auto& layer : layers_)
                         output = layer->forward(output);
 
-                    // Calcular pérdida
                     LossType<T> loss_fn(output, Y);
 
-                    // Backward pass
                     Tensor<T,2> grad = loss_fn.loss_gradient();
                     for (int i = static_cast<int>(layers_.size()) - 1; i >= 0; --i)
                         grad = layers_[i]->backward(grad);
 
-                    // Actualizar parámetros
                     for (auto& layer : layers_)
                         layer->update_params(optimizer);
                 }
             }
         };
 
-    } // namespace neural_network
-} // namespace utec
+    } 
+} 
 
-#endif //PONG_AI_NEURAL_NETWORK_H
+#endif 

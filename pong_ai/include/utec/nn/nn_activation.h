@@ -20,14 +20,14 @@ namespace utec {
         public:
             Tensor<T,2> forward(const Tensor<T,2>& z) override {
                 last_z_ = z;
-                Tensor<T,2> result(z.shape());
+                Tensor<T,2> result(z.shape()[0], z.shape()[1]);
                 for (size_t i = 0; i < z.size(); ++i)
                     result[i] = std::max(static_cast<T>(0), z[i]);
                 return result;
             }
 
             Tensor<T,2> backward(const Tensor<T,2>& g) override {
-                Tensor<T,2> grad(g.shape());
+                Tensor<T,2> grad(g.shape()[0], g.shape()[1]);
                 for (size_t i = 0; i < g.size(); ++i)
                     grad[i] = (last_z_[i] > static_cast<T>(0)) ? g[i] : static_cast<T>(0);
                 return grad;
@@ -40,9 +40,8 @@ namespace utec {
             Tensor<T,2> last_a_;
         public:
             Tensor<T,2> forward(const Tensor<T,2>& z) override {
-                last_a_ = Tensor<T,2>(z.shape());
+                last_a_ = Tensor<T,2>(z.shape()[0], z.shape()[1]);
                 for (size_t i = 0; i < z.size(); ++i) {
-                    // Implementación numéricamente estable
                     T val = z[i];
                     if (val < static_cast<T>(0)) {
                         T exp_val = std::exp(val);
@@ -55,7 +54,7 @@ namespace utec {
             }
 
             Tensor<T,2> backward(const Tensor<T,2>& g) override {
-                Tensor<T,2> grad(g.shape());
+                Tensor<T,2> grad(g.shape()[0], g.shape()[1]);
                 for (size_t i = 0; i < g.size(); ++i) {
                     T a = last_a_[i];
                     grad[i] = g[i] * a * (static_cast<T>(1) - a);
@@ -67,4 +66,4 @@ namespace utec {
     }
 }
 
-#endif //PONG_AI_NN_ACTIVATION_H
+#endif 

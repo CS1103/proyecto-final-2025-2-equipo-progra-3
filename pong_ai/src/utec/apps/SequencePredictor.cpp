@@ -25,7 +25,6 @@ SequencePredictor::SequencePredictor() {
 
 void SequencePredictor::train(size_t epochs) {
 
-    // Entrenamiento: secuencias (a,b,c) → (d)
     utec::algebra::Tensor<double,2> X({200, 3});
     utec::algebra::Tensor<double,2> Y({200, 1});
 

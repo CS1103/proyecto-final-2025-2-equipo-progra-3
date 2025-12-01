@@ -50,6 +50,21 @@ public:
     const std::array<size_t, N>& shape() const { return shape_; }
     size_t size() const { return data_.size(); }
 
+   
+    size_t rows() const { 
+        static_assert(N >= 1, "Tensor must have at least 1 dimension");
+        return shape_[0]; 
+    }
+    
+    size_t cols() const { 
+        static_assert(N >= 2, "Tensor must have at least 2 dimensions for cols()");
+        return shape_[1]; 
+    }
+
+
+    T& operator[](size_t i) { return data_[i]; }
+    const T& operator[](size_t i) const { return data_[i]; }
+
     T& operator()(size_t i) { return data_[i]; }
     const T& operator()(size_t i) const { return data_[i]; }
 
@@ -226,9 +241,7 @@ private:
     }
 };
 
-// ----------------------
-// 🔹 TRANSPOSE 2D - VERSIÓN MÁS EFICIENTE
-// ----------------------
+
 template <typename T, size_t N>
 Tensor<T, N> transpose_2d(const Tensor<T, N>& t) {
     if constexpr (N == 1) {
@@ -236,38 +249,33 @@ Tensor<T, N> transpose_2d(const Tensor<T, N>& t) {
     } else {
         auto s = t.shape();
         std::array<size_t, N> new_shape = s;
-        // Intercambiar las ÚLTIMAS dos dimensiones (N-1 y N-2)
+
         std::swap(new_shape[N - 1], new_shape[N - 2]);
 
-        // Crear tensor resultado usando reshape
+
         Tensor<T, N> result;
         result.reshape(new_shape);
 
-        // Recorrer todos los elementos usando índices planos
-        // Esta es la versión más eficiente ya que evita conversiones múltiples
+ 
         std::array<size_t, N> idx{}, idx_out{};
         for (size_t flat = 0; flat < t.size(); ++flat) {
-            // Reconstruir índices multidimensionales desde el índice plano
+
             size_t tmp = flat;
             for (int i = N - 1; i >= 0; --i) {
                 idx[i] = tmp % s[i];
                 tmp /= s[i];
             }
 
-            // Crear índices para el resultado (transponiendo las últimas dos dimensiones)
             idx_out = idx;
             std::swap(idx_out[N - 1], idx_out[N - 2]);
 
-            // Asignar el valor usando el operador ()
             result(idx_out) = t(idx);
         }
         return result;
     }
 }
 
-// ----------------------
-// 🔹 MATRIX PRODUCT
-// ----------------------
+
 template <typename T, size_t N>
 Tensor<T, N> matrix_product(const Tensor<T, N>& a, const Tensor<T, N>& b) {
     if constexpr (N < 2) throw std::invalid_argument("Need at least 2D tensors");
@@ -275,14 +283,12 @@ Tensor<T, N> matrix_product(const Tensor<T, N>& a, const Tensor<T, N>& b) {
     auto s1 = a.shape();
     auto s2 = b.shape();
 
-    // Batch handling
     size_t batch_dim = N > 2 ? s1[0] : 1;
     if constexpr (N > 2) {
         if (s1[0] != s2[0])
             throw std::invalid_argument("Matrix dimensions are compatible for multiplication BUT Batch dimensions do not match");
     }
 
-    // Verificamos multiplicación compatible
     if (s1[N - 1] != s2[N - 2]) throw std::invalid_argument("Matrix dimensions are incompatible for multiplication");
 
     std::array<size_t, N> out_shape = s1;
@@ -312,7 +318,7 @@ Tensor<T, N> matrix_product(const Tensor<T, N>& a, const Tensor<T, N>& b) {
     return result;
 }
 
-}  // namespace algebra
-}  // namespace utec
+}  
+}  
 
-#endif //PONG_AI_TENSOR1_H
+#endif 

@@ -5,7 +5,7 @@
 #ifndef PONG_AI_NN_INTERFACES_H
 #define PONG_AI_NN_INTERFACES_H
 #pragma once
-#include "tensor.h"
+#include "../algebra/tensor.h"
 
 namespace utec {
     namespace neural_network {
@@ -40,7 +40,7 @@ namespace utec {
             virtual void step() {}
         };
 
-    } // namespace neural_network
-} // namespace utec
+    } 
+} 
 
-#endif //PONG_AI_NN_INTERFACES_H
+#endif 

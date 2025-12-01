@@ -26,8 +26,8 @@ ControllerDemo::ControllerDemo() {
 
 void ControllerDemo::train(size_t epochs) {
 
-    utec::algebra::Tensor<double,2> X({500,2});  // estado: [posición, velocidad]
-    utec::algebra::Tensor<double,2> Y({500,1});  // acción: derecha=1, izquierda=0
+    utec::algebra::Tensor<double,2> X({500,2});  
+    utec::algebra::Tensor<double,2> Y({500,1}); 
 
     for (int i = 0; i < 500; i++) {
         double pos = (std::rand() % 200 - 100) / 100.0;
@@ -36,7 +36,6 @@ void ControllerDemo::train(size_t epochs) {
         X(i,0) = pos;
         X(i,1) = vel;
 
-        // Política deseada: si posición+velocidad > 0 → derecha
         Y(i,0) = (pos + vel > 0) ? 1 : 0;
     }
 

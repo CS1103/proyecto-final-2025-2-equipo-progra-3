@@ -30,17 +30,14 @@ void PatternClassifier::train(size_t epochs) {
     utec::algebra::Tensor<double,2> X({300, 3});
     utec::algebra::Tensor<double,2> Y({300, 3});
 
-    // Círculo
     for (int i = 0; i < 100; i++) {
         X(i,0)=1; X(i,1)=0; X(i,2)=0;
         Y(i,0)=1; Y(i,1)=0; Y(i,2)=0;
     }
-    // Cuadrado
     for (int i = 100; i < 200; i++) {
         X(i,0)=0; X(i,1)=1; X(i,2)=0;
         Y(i,0)=0; Y(i,1)=1; Y(i,2)=0;
     }
-    // Triángulo
     for (int i = 200; i < 300; i++) {
         X(i,0)=0; X(i,1)=0; X(i,2)=1;
         Y(i,0)=0; Y(i,1)=0; Y(i,2)=1;
