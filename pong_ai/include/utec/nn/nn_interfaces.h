@@ -1,5 +1,5 @@
 #pragma once
-#include "tensor.h"
+#include "../algebra/tensor.h"
 
 namespace utec {
     namespace neural_network {

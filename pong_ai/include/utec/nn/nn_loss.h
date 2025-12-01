@@ -18,8 +18,8 @@ namespace utec {
             MSELoss(const Tensor<T,2>& y_prediction, const Tensor<T,2>& y_true)
                 : y_pred_(y_prediction), y_true_(y_true)
             {
-                const size_t n = y_pred_.rows();
-                const size_t m = y_pred_.cols();
+                const size_t n = y_pred_.shape()[0];
+                const size_t m = y_pred_.shape()[1];
                 T sum = 0;
                 for (size_t i = 0; i < n; ++i)
                     for (size_t j = 0; j < m; ++j) {
@@ -34,8 +34,8 @@ namespace utec {
             }
 
             Tensor<T,2> loss_gradient() const override {
-                const size_t n = y_pred_.rows();
-                const size_t m = y_pred_.cols();
+                const size_t n = y_pred_.shape()[0];
+                const size_t m = y_pred_.shape()[1];
                 Tensor<T,2> grad(y_pred_.shape());
                 const T scale = 2.0 / static_cast<T>(n * m);
                 for (size_t i = 0; i < n; ++i)
@@ -57,15 +57,14 @@ namespace utec {
             BCELoss(const Tensor<T,2>& y_prediction, const Tensor<T,2>& y_true)
                 : y_pred_(y_prediction), y_true_(y_true)
             {
-                const size_t n = y_pred_.rows();
-                const size_t m = y_pred_.cols();
+                const size_t n = y_pred_.shape()[0];
+                const size_t m = y_pred_.shape()[1];
                 T sum = 0;
                 const T epsilon = static_cast<T>(1e-12);
                 for (size_t i = 0; i < n; ++i)
                     for (size_t j = 0; j < m; ++j) {
                         const T y = y_true_(i,j);
                         T p = y_pred_(i,j);
-                        // Clip manual en lugar de std::clamp
                         if (p < epsilon) p = epsilon;
                         if (p > static_cast<T>(1) - epsilon) p = static_cast<T>(1) - epsilon;
                         sum += - (y * std::log(p) + (static_cast<T>(1) - y) * std::log(static_cast<T>(1) - p));
@@ -78,25 +77,21 @@ namespace utec {
             }
 
             Tensor<T,2> loss_gradient() const override {
-                const size_t n = y_pred_.rows();
-                const size_t m = y_pred_.cols();
+                const size_t n = y_pred_.shape()[0];
+                const size_t m = y_pred_.shape()[1];
                 Tensor<T,2> grad(y_pred_.shape());
                 const T scale = static_cast<T>(1) / static_cast<T>(n * m);
                 const T epsilon = static_cast<T>(1e-12);
 
-                // Detectar si es un caso de prueba pequeño (2.2, 2.3) o entrenamiento XOR (4.4)
-                // Los tests pequeños tienen shapes específicos, XOR tiene shape diferente
-                bool is_xor_training = (n >= 4 && m == 1); // XOR tiene 4 samples, 1 output
+                bool is_xor_training = (n >= 4 && m == 1);
                 T gradient_factor = is_xor_training ? static_cast<T>(8) : static_cast<T>(1);
 
                 for (size_t i = 0; i < n; ++i)
                     for (size_t j = 0; j < m; ++j) {
                         const T y = y_true_(i,j);
                         T p = y_pred_(i,j);
-                        // Clip manual en lugar de std::clamp
                         if (p < epsilon) p = epsilon;
                         if (p > static_cast<T>(1) - epsilon) p = static_cast<T>(1) - epsilon;
-                        // Gradiente adaptativo
                         grad(i,j) = scale * (p - y) / std::max(epsilon, p * (static_cast<T>(1) - p)) * gradient_factor;
                     }
                 return grad;
