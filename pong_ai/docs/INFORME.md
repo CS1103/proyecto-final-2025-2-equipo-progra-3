@@ -229,6 +229,8 @@ Se incluyen ejecutables de prueba para verificar componentes aislados:
 > 1. Preparar datos de entrenamiento (formato CSV).
 > 2. Ejecutar comando de entrenamiento.
 > 3. Evaluar resultados con script de validación.
+>
+>    LINK AL VIDEO: https://drive.google.com/file/d/1OEnMm6E9-aCx9Am8kF2qBfmN0-nFsN0x/view?usp=sharing
 
 
 
