@@ -60,26 +60,114 @@ El desarrollo abarca los tres hitos (Epics) del curso:
    make
    ```
 ---
+# 1. Investigación Teórica
 
-### 1. Investigación teórica
+## 1.1 Historia y evolución de las Redes Neuronales
 
-El dataset Iris es uno de los conjuntos de datos más utilizados en la historia del aprendizaje automático. Fue introducido por Ronald Fisher en 1936 y contiene 150 muestras de flores iris clasificadas en tres especies:
+El estudio de las redes neuronales artificiales comenzó en 1943 con el modelo de McCulloch y Pitts, que intentaba representar matemáticamente el comportamiento de una neurona biológica. En 1957, Rosenblatt presentó el Perceptrón, capaz de aprender pesos mediante un algoritmo de ajuste, aunque limitado a problemas linealmente separables.
 
-- Iris Setosa
-- Iris Versicolor
-- Iris Virginica
+El avance más importante llegó en 1986, cuando Rumelhart, Hinton y Williams publicaron el algoritmo de Backpropagation, que permitió entrenar redes con múltiples capas e impulsó el desarrollo del aprendizaje profundo moderno. Durante los años 90 surgieron arquitecturas especializadas, como las redes convolucionales para visión y las recurrentes para secuencias.
 
-Cada registro contiene 4 características medidas en centímetros:
+Con la llegada de GPUs y grandes cantidades de datos, el aprendizaje profundo se consolidó como una de las áreas centrales de la inteligencia artificial. Este proyecto se inspira en esa evolución implementando desde cero el flujo completo de una red neuronal en C++.
 
-- Longitud del sépalo
-- Ancho del sépalo
-- Longitud del pétalo
-- Ancho del pétalo
+---
 
-El objetivo típico es construir un modelo que, a partir de estas medidas, prediga la especie. Este dataset es linealmente separable entre algunas clases, por lo que es ideal para validar modelos simples como MLP o clasificadores lineales.
+## 1.2 Principales Arquitecturas
 
-En este proyecto, se usa Iris como dataset de entrenamiento para probar la red neuronal creada desde cero.
+### 1.2.1 Perceptrón Multicapa (MLP)
 
+El MLP está compuesto por capas densas donde cada neurona aplica una combinación lineal seguida de una activación no lineal:
+
+$$
+y = f(Wx + b)
+$$
+
+Aquí:
+- $x$ es la entrada,
+- $W$ es la matriz de pesos,
+- $b$ el sesgo,
+- $f$ una función como ReLU o Sigmoid.
+
+El MLP es un modelo generalista adecuado para clasificación y regresión, y sirve como base para validar la implementación de forward y backward propagation dentro del framework del proyecto.
+
+### 1.2.2 Redes Convolucionales (CNN)
+
+Las CNN fueron diseñadas para datos espaciales como imágenes. Sus capas aplican filtros locales que recorren la entrada, permitiendo detectar patrones como bordes o texturas. Este mecanismo reduce la cantidad de parámetros y mejora la generalización.
+
+Aunque no se implementan en este proyecto, el motor tensorial desarrollado permite futuras extensiones hacia este tipo de capas.
+
+### 1.2.3 Redes Recurrentes (RNN)
+
+Las RNN manejan datos secuenciales mediante conexiones que mantienen un estado interno, lo que les da memoria temporal. Variantes como LSTM y GRU permiten aprender dependencias de largo plazo sin sufrir del problema del gradiente que se desvanece.
+
+El proyecto incluye un predictor de secuencias basado en MLP, pero su estructura modular permite evolucionar hacia modelos recurrentes.
+
+---
+
+## 1.3 Algoritmos de Entrenamiento
+
+### 1.3.1 Forward Propagation
+
+El proceso de inferencia consiste en propagar una entrada a través de cada capa aplicando transformaciones lineales y funciones de activación:
+
+$$
+z = Wx + b
+$$
+
+$$
+a = f(z)
+$$
+
+Este flujo está implementado utilizando un motor tensorial propio en C++ que maneja operaciones básicas de álgebra lineal sin depender de bibliotecas externas.
+
+---
+
+### 1.3.2 Funciones de Costo
+
+Las funciones de costo miden la discrepancia entre la predicción y el valor real. Entre las utilizadas en el proyecto están:
+
+- Error Cuadrático Medio (MSE):
+  $$
+  L = \frac{1}{n} \sum (y_{\text{pred}} - y_{\text{true}})^2
+  $$
+
+- Entropía Cruzada Binaria (BCE)
+
+Para clasificación multiclase, una mejora futura es implementar Softmax junto con Entropía Cruzada Categórica.
+
+---
+
+### 1.3.3 Backpropagation
+
+El algoritmo de retropropagación calcula el gradiente de la función de costo respecto a cada parámetro de la red utilizando la regla de la cadena:
+
+$$
+\frac{\partial L}{\partial W} = 
+\frac{\partial L}{\partial a}
+\cdot
+\frac{\partial a}{\partial z}
+\cdot
+\frac{\partial z}{\partial W}
+$$
+
+Cada capa del proyecto almacena sus gradientes y los utiliza para actualizar los pesos.
+
+---
+
+### 1.3.4 Optimizadores
+
+Los optimizadores definen cómo se ajustan los parámetros durante el entrenamiento. Este proyecto implementa dos métodos fundamentales:
+**SGD (Stochastic Gradient Descent)**  
+
+$$
+W_{\text{new}} = W_{\text{old}} - \eta \, \nabla W
+$$
+
+
+**Adam (Adaptive Moment Estimation)**  
+Utiliza momentos acumulados de los gradientes y tasas de aprendizaje adaptativas, logrando una convergencia más rápida y estable.
+
+Los dos algoritmos están implementados utilizando tensores propios, lo que permite un control completo sobre el cálculo.
 ---
 
 ### 2. Diseño e implementación
