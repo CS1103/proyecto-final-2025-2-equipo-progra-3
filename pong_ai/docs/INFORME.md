@@ -33,7 +33,7 @@ El desarrollo abarca los tres hitos (Epics) del curso:
 * **Grupo**: `equipo-progra-3`
 * **Integrantes**:
 
-  * Alumno A – 209900001 (Responsable de investigación teórica)
+  * Leonardo Gabriel Sanchez Terrazos – 202410273 (Responsable de investigación teórica)
   * Juan Diego Azabache – 2002110430 (Desarrollo de la arquitectura)
   * Alumno C – 209900003 (Implementación del modelo)
   * Fabrizio Gonzales Nuñez – 202110146 (Pruebas y benchmarking)
