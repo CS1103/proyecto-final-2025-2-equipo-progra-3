@@ -37,7 +37,7 @@ El desarrollo abarca los tres hitos (Epics) del curso:
 * **Integrantes**:
 
   * Leonardo Gabriel Sanchez Terrazos – 202410273 (Responsable de investigación teórica)
-  * Alumno B – 209900002 (Desarrollo de la arquitectura)
+  * Eduardo Gabriel Osorio Panduro – 202410406 (Desarrollo de la arquitectura)
   * Alumno C – 209900003 (Implementación del modelo)
   * Fabrizio Gonzales Nuñez – 202110146 (Pruebas y benchmarking)
   * Alumno E – 209900005 (Documentación y demo)
