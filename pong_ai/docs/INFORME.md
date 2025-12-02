@@ -38,6 +38,7 @@ El desarrollo abarca los tres hitos (Epics) del curso:
   * Pablo Mario Rodríguez Poémape – 202410047 (Implementación del modelo)
   * Fabrizio Gonzales Nuñez – 202110146 (Pruebas y benchmarking)
   * Eduardo Gabriel Osorio Panduro – 202410406 (Documentación y demo)
+  * Alvaro Antonio Lira Francia - 202110188
 
 
 ---
