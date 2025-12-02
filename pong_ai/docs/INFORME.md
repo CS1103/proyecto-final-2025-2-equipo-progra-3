@@ -5,9 +5,6 @@
 
 >  Este proyecto implementa un framework de Deep Learning desarrollado desde cero en C++ Moderno (C++20). A diferencia de soluciones comerciales, este motor no utiliza librerías externas para el cálculo matricial; en su lugar, hemos implementado nuestro propio motor de álgebra lineal (Tensor<T,N>).
 
-El dataset usado es "Iris" (recolectado de https://gist.github.com/netj/8836201#file-iris-csv), contiene 150 muestras de flores divididas en 3 especies (Setosa, Versicolor, Virginica). Cada muestra tiene 4 características numéricas relacionadas con las medidas del sépalo y del pétalo.
-
-El objetivo es clasificar correctamente la especie basada en estas medidas.
 
 El sistema es capaz de resolver problemas de:
 - Clasificación: Identificación de patrones (Dataset Iris). 
@@ -66,12 +63,22 @@ El desarrollo abarca los tres hitos (Epics) del curso:
 
 ### 1. Investigación teórica
 
-* **Objetivo**: Explorar fundamentos y arquitecturas de redes neuronales.
-* **Contenido de ejemplo**:
+El dataset Iris es uno de los conjuntos de datos más utilizados en la historia del aprendizaje automático. Fue introducido por Ronald Fisher en 1936 y contiene 150 muestras de flores iris clasificadas en tres especies:
 
-  1. Historia y evolución de las NNs.
-  2. Principales arquitecturas: MLP, CNN, RNN.
-  3. Algoritmos de entrenamiento: backpropagation, optimizadores.
+- Iris Setosa
+- Iris Versicolor
+- Iris Virginica
+
+Cada registro contiene 4 características medidas en centímetros:
+
+- Longitud del sépalo
+- Ancho del sépalo
+- Longitud del pétalo
+- Ancho del pétalo
+
+El objetivo típico es construir un modelo que, a partir de estas medidas, prediga la especie. Este dataset es linealmente separable entre algunas clases, por lo que es ideal para validar modelos simples como MLP o clasificadores lineales.
+
+En este proyecto, se usa Iris como dataset de entrenamiento para probar la red neuronal creada desde cero.
 
 ---
 
@@ -225,7 +232,8 @@ Análisis: El framework es robusto y funcional. La implementación matemática e
 > [6] S. Haykin, Neural Networks and Learning Machines, 3rd ed., Pearson, 2009.
 > 
 > [7] G. James et al., An Introduction to Statistical Learning, Springer, 2013.
-
+> 
+> [8] R. A. Fisher, “The use of multiple measurements in taxonomic problems,” Annals of Eugenics, vol. 7, pp. 179–188, 1936.
 ---
 
 ### Licencia
