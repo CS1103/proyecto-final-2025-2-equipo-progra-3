@@ -278,9 +278,9 @@ Análisis: El framework es robusto y funcional. La implementación matemática e
 
 | Tarea                     | Miembro           | Rol                       |
 | ------------------------- |-------------------| ------------------------- |
-| Investigación teórica     | Alumno A          | Documentar bases teóricas |
-| Diseño de la arquitectura | Alumno B          | UML y esquemas de clases  |
-| Implementación del modelo | Alumno C          | Código C++ de la NN       |
+| Investigación teórica     | Leonardo Gabriel Sanchez Terrazos | Documentar bases teóricas |
+| Diseño de la arquitectura | Juan Diego Azabache | UML y esquemas de clases  |
+| Implementación del modelo | Pablo Mario Rodríguez Poémape | Código C++ de la NN       |
 | Pruebas y benchmarking    | Fabrizio Gonzales | Generación de métricas    |
 | Documentación y demo      | Fabrizio Gonzales | Tutorial y video demo     |
 
