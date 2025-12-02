@@ -34,7 +34,7 @@ El desarrollo abarca los tres hitos (Epics) del curso:
 * **Integrantes**:
 
   * Alumno A – 209900001 (Responsable de investigación teórica)
-  * Alumno B – 209900002 (Desarrollo de la arquitectura)
+  * Juan Diego Azabache – 2002110430 (Desarrollo de la arquitectura)
   * Alumno C – 209900003 (Implementación del modelo)
   * Fabrizio Gonzales Nuñez – 202110146 (Pruebas y benchmarking)
   * Alumno E – 209900005 (Documentación y demo)
