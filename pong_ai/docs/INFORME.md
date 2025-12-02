@@ -37,7 +37,7 @@ El desarrollo abarca los tres hitos (Epics) del curso:
   * Juan Diego Azabache – 2002110430 (Desarrollo de la arquitectura)
   * Pablo Mario Rodríguez Poémape – 202410047 (Implementación del modelo)
   * Fabrizio Gonzales Nuñez – 202110146 (Pruebas y benchmarking)
-  * Alumno E – 209900005 (Documentación y demo)
+  * Eduardo Gabriel Osorio Panduro – 202410406 (Documentación y demo)
 
 
 ---
